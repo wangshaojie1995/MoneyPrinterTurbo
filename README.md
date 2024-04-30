@@ -57,7 +57,7 @@
 - [x] 支持 **多种语音** 合成
 - [x] 支持 **字幕生成**，可以调整 `字体`、`位置`、`颜色`、`大小`，同时支持`字幕描边`设置
 - [x] 支持 **背景音乐**，随机或者指定音乐文件，可设置`背景音乐音量`
-- [x] 视频素材来源 **高清**，而且 **无版权**
+- [x] 视频素材来源 **高清**，而且 **无版权**，也可以使用自己的本地素材
 - [x] 支持 **OpenAI**、**moonshot**、**Azure**、**gpt4free**、**one-api**、**通义千问**、**Google Gemini**、**Ollama** 等多种模型接入
 
   ❓[如何使用免费的 **OpenAI GPT-3.5
@@ -71,24 +71,13 @@
 - [ ] 增加更多视频素材来源，优化视频素材和文案的匹配度
 - [ ] 增加视频长度选项：短、中、长
 - [ ] 增加免费网络代理，让访问OpenAI和素材下载不再受限
-- [ ] 可以使用自己的素材
 - [ ] 朗读声音和背景音乐，提供实时试听
 - [ ] 支持更多的语音合成服务商，比如 OpenAI TTS
 - [ ] 自动上传到YouTube平台
 
 ## 交流讨论 💬
 
-<img src="docs/wechat-04.jpg" width="150">
-
-## 更新日志
-
-### 2024-04-16 v1.1.2
-
-- 支持azure新发布的9种语音合成声音（需要配置API
-  KEY） [9个更真实的AI对话声音](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/9-more-realistic-ai-voices-for-conversations-now-generally/ba-p/4099471)
-- 优化字幕显示
-- 修复内存泄露问题
-- 一些其他的bug修复和优化
+<img src="docs/wechat-group.jpg" width="250">
 
 ## 视频演示 📺
 
@@ -220,7 +209,7 @@ pip install -r requirements.txt
 
 ###### Windows:
 
-- 下载 https://imagemagick.org/archive/binaries/ImageMagick-7.1.1-30-Q16-x64-static.exe
+- 下载 https://imagemagick.org/archive/binaries/ImageMagick-7.1.1-31-Q16-x64-static.exe
 - 安装下载好的 ImageMagick，注意不要修改安装路径
 - 修改 `配置文件 config.toml` 中的 `imagemagick_path` 为你的实际安装路径（如果安装的时候没有修改路径，直接取消注释即可）
 
@@ -425,26 +414,17 @@ ulimit -n
 ulimit -n 10240
 ```
 
-### ❓AttributeError: module 'PIL.Image' has no attribute 'ANTIALIAS'
+### ❓Whisper 模型下载失败，出现如下错误
+LocalEntryNotfoundEror: Cannot find an appropriate cached snapshotfolderfor the specified revision on the local disk and outgoing trafic has been disabled. 
+To enablerepo look-ups and downloads online, pass 'local files only=False' as input.
 
-[issue 101](https://github.com/harry0703/MoneyPrinterTurbo/issues/101),
-[issue 83](https://github.com/harry0703/MoneyPrinterTurbo/issues/83),
-[issue 70](https://github.com/harry0703/MoneyPrinterTurbo/issues/70)
+或者 
 
-先看下当前的 Pillow 版本是多少
+An error occured while synchronizing the model Systran/faster-whisper-large-v3 from the Hugging Face Hub:
+An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.
+Trying to load the model directly from the local cache, if it exists.
 
-```shell
-pip list |grep Pillow
-```
-
-如果是 10.x 的版本，可以尝试下降级看看，有用户反馈降级后正常
-
-```shell
-pip uninstall Pillow
-pip install Pillow==9.5.0
-# 或者降级到 8.4.0
-pip install Pillow==8.4.0
-```
+解决方法：[点击查看如何从网盘手动下载模型](#%E5%AD%97%E5%B9%95%E7%94%9F%E6%88%90-)
 
 ## 反馈建议 📢
 
